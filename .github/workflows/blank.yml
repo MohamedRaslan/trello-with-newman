@@ -15,9 +15,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      
+      - name: Install htmlextra
+        run: npm install -g newman-reporter-htmlextra
+        
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Run newman
         run: newman run 'Trello With Folders.postman_collection.json' -r "cli,json,junit,htmlextra" --global-var "TRELLO_API_KEY=${{secrets.TRELLO_API_KEY}}" --global-var "TRELLO_API_TOKEN=${{secrets.TRELLO_API_TOKEN}}" --global-var "TRELLO_BASE_URL=https://api.trello.com/1/"
         
 
