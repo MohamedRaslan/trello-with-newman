@@ -24,6 +24,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run newman
         run: newman run 'Trello With Folders.postman_collection.json' -r "cli,json,junit,htmlextra" --global-var "TRELLO_API_KEY=${{secrets.TRELLO_API_KEY}}" --global-var "TRELLO_API_TOKEN=${{secrets.TRELLO_API_TOKEN}}" --global-var "TRELLO_BASE_URL=https://api.trello.com/1/"
-        
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: newman-reports
+          path: ./newman
 
